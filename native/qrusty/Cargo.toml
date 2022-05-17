@@ -1,0 +1,15 @@
+[package]
+name = "qrusty"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "qrusty"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = "0.24.0"
+qrcode = { git = "https://github.com/qm3ster/qrcode-rust"}
+image = "0.24"
+base64 = "0.13.0"
