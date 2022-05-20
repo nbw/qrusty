@@ -10,6 +10,8 @@ crate-type = ["cdylib"]
 
 [dependencies]
 rustler = "0.24.0"
-qrcode = { git = "https://github.com/qm3ster/qrcode-rust"}
+# Using fork of qrcode library while waiting for
+# image v0.24 update PR to be merged (https://github.com/kennytm/qrcode-rust/pull/54)
+qrcode = { git = "https://github.com/nbw/qrcode-rust"}
 image = "0.24"
 base64 = "0.13.0"
