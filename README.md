@@ -6,19 +6,19 @@ The "precompiled" implies that using this library does not require installing Ru
 
 ## Installation
 
-QRusty at the moment is NOT on Hex.
-
-~~The package can be installed by adding `qrusty` to your list of dependencies in `mix.exs`:~~
+The package can be installed by adding `qrusty` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:qrusty, github: "nbw/qrusty"}
+    {:qrusty, "~> 0.1.1"}
   ]
 end
 ```
 
 ## Usage
+
+[Qrusty documentation](https://hexdocs.pm/qrusty/Qrusty.html).
 
 The following QR formats are supported:
 
