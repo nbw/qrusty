@@ -33,7 +33,7 @@ The following QR formats are supported:
 ```elixir
 > {:ok, %Qrusty.QR{encoded_data: svg}} = Qrusty.qr("https://elixir-lang.org/", :svg, size: 200)
 
-File.write("./samples/qr.svg", svg)
+File.write("./assets/qr.svg", svg)
 ```
 
 ### PNG/JPG
@@ -41,11 +41,11 @@ File.write("./samples/qr.svg", svg)
 ```elixir
 > {:ok, %Qrusty.QR{encoded_data: binary}} = Qrusty.qr("https://elixir-lang.org/", :png, width: 200, height: 200)
 
-File.write("./samples/qr.png", binary)
+File.write("./assets/qr.png", binary)
 
 > {:ok, %Qrusty.QR{encoded_data: binary}} = Qrusty.qr("https://elixir-lang.org/", :jpg, width: 200, height: 200)
 
-File.write("./samples/qr.jpg", binary)
+File.write("./assets/qr.jpg", binary)
 ```
 
 ### Base64 PNG/JPG
@@ -60,13 +60,13 @@ File.write("./samples/qr.jpg", binary)
 </a>
 ```
 
-| Format | Sample                           |
-| ------ | -------------------------------- |
-| SVG    | ![ svg ](/samples/qr.svg)        |
-| PNG    | ![ png ](/samples/qr.png)        |
-| JPG    | ![ jpg ](/samples/qr.jpg)        |
-| PNG64  | [ sample ](/samples/base65.html) |
-| JPG64  | --                               |
+| Format | Sample                         |
+| ------ | ------------------------------ |
+| SVG    | ![ svg ](assets/qr.svg)        |
+| PNG    | ![ png ](assets/qr.png)        |
+| JPG    | ![ jpg ](assets/qr.jpg)        |
+| PNG64  | [ sample ](assets/base65.html) |
+| JPG64  | --                             |
 
 ## Benchmarks
 
@@ -128,6 +128,7 @@ Basically, the end user is an Elixir developer, so keep as much code as possible
 
 - Thanks to kennytm for [qrcode-rust](https://github.com/kennytm/qrcode-rust)
 - Thanks to qm3ster for [this PR](https://github.com/qm3ster/qrcode-rust) to support image v0.24
+- Thanks to the creators of [EQRCode](https://github.com/SiliconJungles/eqrcode)
 
 # Copyright and License
 
