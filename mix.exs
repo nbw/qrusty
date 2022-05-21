@@ -50,12 +50,15 @@ defmodule Qrusty.MixProject do
   end
 
   defp package do
-    %{
+    [
+      files: [
+        "checksum-*.exs"
+      ],
       licenses: ["MIT"],
       maintainers: ["Nathan Willson"],
       links: %{"GitHub" => @source_url},
       source_url: @source_url
-    }
+    ]
   end
 
   defp aliases do
