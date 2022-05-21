@@ -1,7 +1,6 @@
-############################
-## ======== PNG  ======== ## 
-############################
+# PNG
 
+```
 qrusty ~ mix run benchmarks/png.exs
 Operating System: macOS
 CPU Information: Intel(R) Core(TM) i7-1060NG7 CPU @ 1.20GHz
@@ -52,12 +51,11 @@ png_eqrcode          0.29         3.48 s     ±2.00%         3.48 s         3.53
 Comparison:
 png_qrusty           2.07
 png_eqrcode          0.29 - 7.21x slower +3.00 s
+```
 
+# SVG
 
-############################
-## ======== SVG  ======== ## 
-############################
-
+```
 qrusty ~ mix run benchmarks/svg.exs
 Operating System: macOS
 CPU Information: Intel(R) Core(TM) i7-1060NG7 CPU @ 1.20GHz
@@ -108,12 +106,11 @@ svg_eqrcode          0.32         3.16 s     ±2.20%         3.16 s         3.21
 Comparison:
 svg_qrusty          13.90
 svg_eqrcode          0.32 - 43.87x slower +3.08 s
+```
 
+# JPG
 
-############################
-## ======== JPG  ======== ## 
-############################
-
+```
 qrusty ~ mix run benchmarks/jpg.exs
 Operating System: macOS
 CPU Information: Intel(R) Core(TM) i7-1060NG7 CPU @ 1.20GHz
@@ -146,5 +143,4 @@ jpg_qrusty          4.81      207.93 ms     ±3.95%      207.71 ms      232.28 m
 ##### With input 500x500 QR (100 codes) #####
 Name                 ips        average  deviation         median         99th %
 jpg_qrusty          2.67      374.62 ms    ±10.49%      366.16 ms      457.37 ms
-
-
+```

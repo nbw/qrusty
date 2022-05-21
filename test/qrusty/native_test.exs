@@ -42,5 +42,5 @@ defmodule Qrusty.NativeTest do
     end
   end
 
-  def load_asset(filename), do: File.read!("./assets/#{filename}")
+  def load_asset(filename), do: File.read!("./test/assets/#{filename}")
 end

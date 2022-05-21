@@ -12,12 +12,13 @@ defmodule Qrusty.MixProject do
       elixir: "~> 1.12",
       aliases: aliases(),
       start_permanent: Mix.env() == :prod,
+      description: "QR Code library that leverages precompiled Rust",
+      package: package(),
       docs: docs(),
       deps: deps()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger]
@@ -41,12 +42,20 @@ defmodule Qrusty.MixProject do
 
   defp docs do
     [
-      main: "QRusty",
+      main: "Qrusty",
       assets: "assets",
       source_ref: "v#{@version}",
-      source_url: @source_url,
-      extras: ["README.md"]
+      source_url: @source_url
     ]
+  end
+
+  defp package do
+    %{
+      licenses: ["MIT"],
+      maintainers: ["Nathan Willson"],
+      links: %{"GitHub" => @source_url},
+      source_url: @source_url
+    }
   end
 
   defp aliases do
