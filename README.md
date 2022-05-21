@@ -70,12 +70,33 @@ File.write("./samples/qr.jpg", binary)
 
 ## Benchmarks
 
-For raw benchmarks comparing Qrusty to [EQRCode](https://github.com/SiliconJungles/eqrcode), run the following:
+Benchmarks have been included to compare Qrusty (Rust based) to [EQRCode](https://github.com/SiliconJungles/eqrcode) (Elixir based), as it's the defacto Elixir QR Code library.
+
+**Note**: since the execution time of generating a single QR code is so fast, benchmarking was not very accurate. To compensate, **the benchmarks measure the execution time for generating 100 QR codes.**
+
+### Usage
+
+Run the following:
 
 ```
-mix run benchee/png.exs
-mix run benchee/svg.exs
+mix run benchmarks/png.exs
+mix run benchmarks/svg.exs
+...
 ```
+
+### Summary
+
+The full results are [here](/BENCHMARKS.md).
+
+Qrusty vs EQRCode (x times faster)
+
+|     | 100x100 | 200x200 | 500x500 |
+| --- | ------- | ------- | ------- |
+| PNG | 27.43x  | 18.86x  | 7.21x   |
+| SVG | 42.83x  | 44.02x  | 43.87x  |
+| JPG | -       | -       | -       |
+
+Trends: QRusty executes faster than QRCode, but the gains decrease with larger image sizes.
 
 ## Development
 
@@ -101,4 +122,13 @@ Contributions are welcome.
 - The Rust layer should not deal with errors caused by human input (ex: invalid input args). Deal with interface errors in Elixir
 - Default values, etc. should all be handled on the Elixir side
 
-Basically, the end user is an Elixir developer, so keep as much code as possible in Elixir for readability. Leverage Rust only for it's performance benefits/access to system level libraries, etc. 🙏
+Basically, the end user is an Elixir developer, so keep as much code as possible in Elixir for readability. Leverage Rust only for its performance benefits/access to system level libraries, etc. 🙏
+
+# Thanks
+
+- Thanks to kennytm for [qrcode-rust](https://github.com/kennytm/qrcode-rust)
+- Thanks to qm3ster for [this PR](https://github.com/qm3ster/qrcode-rust) to support image v0.24
+
+# Copyright and License
+
+This library is released under the MIT License. See the [LICENSE.md](/LICENSE.md) file.
