@@ -11,7 +11,7 @@ The package can be installed by adding `qrusty` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:qrusty, "~> 0.1.2"}
+    {:qrusty, "~> 0.1.3"}
   ]
 end
 ```
