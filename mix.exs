@@ -1,7 +1,7 @@
 defmodule Qrusty.MixProject do
   use Mix.Project
 
-  @version "0.1.2"
+  @version "0.1.3"
   @source_url "https://github.com/nbw/qrusty"
 
   def project do
@@ -52,7 +52,11 @@ defmodule Qrusty.MixProject do
   defp package do
     [
       files: [
-        "checksum-*.exs"
+        "lib",
+        "native",
+        "checksum-*.exs",
+        "mix.exs",
+        "LICENSE"
       ],
       licenses: ["MIT"],
       maintainers: ["Nathan Willson"],
