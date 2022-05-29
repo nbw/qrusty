@@ -28,17 +28,25 @@ defmodule Qrusty.QR do
   @doc """
   Validates input arguements and generates a QR if valid.
   """
-  @spec new(data :: binary(), format :: atom(), width :: integer(), height: integer()) ::
+  @spec new(
+          data :: binary(),
+          format :: atom(),
+          width :: integer(),
+          height :: integer(),
+          error_correction :: integer()
+        ) ::
           {:ok, %__MODULE__{}}
           | {:error, :invalid_dimensions}
           | {:error, :invalid_format}
           | {:error, :invalid_data}
-  def new(data, format, width, height) do
+          | {:error, :invalid_error_correction}
+  def new(data, format, width, height, ec) do
     with :ok <- validate_data(data),
          :ok <- validate_format(format),
          :ok <- validate_dimension(width),
          :ok <- validate_dimension(height),
-         {:ok, encoded_data} <- Native.generate(data, format, width, height) do
+         :ok <- validate_error_correction(ec),
+         {:ok, encoded_data} <- Native.generate(data, format, width, height, ec) do
       {:ok,
        %__MODULE__{
          data: data,
@@ -58,4 +66,7 @@ defmodule Qrusty.QR do
 
   defp validate_data(d) when is_binary(d), do: :ok
   defp validate_data(_d), do: {:error, :invalid_data}
+
+  defp validate_error_correction(ec) when ec in ~w(l m q h)a, do: :ok
+  defp validate_error_correction(_ec), do: {:error, :invalid_error_correction}
 end
