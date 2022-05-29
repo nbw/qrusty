@@ -469,7 +469,7 @@ dependencies = [
 
 [[package]]
 name = "qrusty"
-version = "0.1.0"
+version = "0.1.4"
 dependencies = [
  "base64",
  "image",
