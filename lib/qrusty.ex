@@ -17,10 +17,10 @@ defmodule Qrusty do
   - base64 JPG (`:jpg64`)
 
   ### Options
-  - width: width in pixels (default: 200)
-  - height: height in pixels (default: 200)
-  - size: shorthand for width and height (default: 200)
-  - ec: [error correction level](https://docs.rs/qrcode/0.6.0/qrcode/types/enum.EcLevel.html#variants) `:l`, `:m`, `:q`, `:h` (default: :m)
+  - *width*: width in pixels (default: 200)
+  - *height*: height in pixels (default: 200)
+  - *size*: shorthand for width and height (default: 200)
+  - *ec*: [error correction level](https://docs.rs/qrcode/0.6.0/qrcode/types/enum.EcLevel.html#variants) `:l`, `:m`, `:q`, `:h` (default: :m)
 
   ### SVG
 
@@ -54,13 +54,19 @@ defmodule Qrusty do
   </a>
   ```
 
-  | Format | Sample                                                                  |
-  | ------ | ----------------------------------------------------------------------- |
-  | SVG    | ![ svg ](assets/qr.svg)                                              |
-  | PNG    | ![ png ](assets/qr.png)                                              |
-  | JPG    | ![ jpg ](assets/qr.jpg)                                              |
-  | PNG64  | [ sample ](assets/base64.html) |
-  | JPG64  | --                                                                      |
+  | Format | Sample                            |
+  | ------ | --------------------------------- |
+  | SVG    | ![ svg ](assets/qr.svg)           |
+  | PNG    | ![ png ](assets/qr.png)           |
+  | JPG    | ![ jpg ](assets/qr.jpg)           |
+  | PNG64  | [ sample ](assets/base64.html)    |
+  | JPG64  | --                                |
+
+  Error correction:
+
+  | L                          | M                          | Q                          | H                          |
+  | -------------------------- |--------------------------- | -------------------------- | -------------------------- |
+  | ![ l ](assets/qr_ec_l.jpg) | ![ m ](assets/qr_ec_m.jpg) | ![ q ](assets/qr_ec_q.jpg) | ![ h ](assets/qr_ec_h.jpg) |
   """
 
   alias Qrusty.QR
@@ -113,7 +119,7 @@ defmodule Qrusty do
       Raises `Qrusty.Error` if the input is invalid
 
   """
-  @spec qr(data, format, opts) :: binary()
+  @spec qr!(data, format, opts) :: binary()
   def qr!(data, format, opts \\ []) do
     QR.new(data, format, width(opts), height(opts), error_correction(opts))
     |> case do
