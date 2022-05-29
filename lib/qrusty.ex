@@ -16,10 +16,16 @@ defmodule Qrusty do
   - base64 PNG (`:png64`)
   - base64 JPG (`:jpg64`)
 
+  ### Options
+  - width: width in pixels (default: 200)
+  - height: height in pixels (default: 200)
+  - size: shorthand for width and height (default: 200)
+  - ec: [error correction level](https://docs.rs/qrcode/0.6.0/qrcode/types/enum.EcLevel.html#variants) `:l`, `:m`, `:q`, `:h` (default: :m)
+
   ### SVG
 
   ```elixir
-  > {:ok, %Qrusty.QR{encoded_data: svg}} = Qrusty.qr("https://elixir-lang.org/", :svg, size: 200)
+  > {:ok, %Qrusty.QR{encoded_data: svg}} = Qrusty.qr("https://elixir-lang.org/", :svg, size: 200, ec: :h)
 
   File.write("./assets/qr.svg", svg)
   ```
@@ -60,6 +66,7 @@ defmodule Qrusty do
   alias Qrusty.QR
 
   @default_size 200
+  @default_ec :m
 
   import Keyword, only: [get: 2, get: 3]
 
@@ -73,19 +80,46 @@ defmodule Qrusty do
           ]
           | []
 
+  defmodule Error do
+    defexception message: "a error has occured"
+
+    @impl true
+    def exception(reason) when is_atom(reason), do: exception(Atom.to_string(reason))
+    def exception(reason), do: %__MODULE__{message: reason}
+  end
+
   @doc """
   Generate a QR code.
 
   ## Example
-      iex>  Qrusty.qr("https://elixir-lang.org/", size: 100);
+      iex>  Qrusty.qr("https://elixir-lang.org/", :svg, size: 100);
       {:ok, %QR{}}
 
-      iex>  Qrusty.qr("https://elixir-lang.org/", width: 100, height: 100);
+      iex>  Qrusty.qr("https://elixir-lang.org/", :png, width: 100, height: 100);
       {:ok, %QR{}}
   """
   @spec qr(data, format, opts) :: {:ok, %QR{}} | {:error, any()}
   def qr(data, format, opts \\ []) do
-    QR.new(data, format, width(opts), height(opts))
+    QR.new(data, format, width(opts), height(opts), error_correction(opts))
+  end
+
+  @doc """
+  Generate a QR code.
+
+  ## Example
+      iex>  Qrusty.qr!("https://elixir-lang.org/", :svg, size: 100);
+      "..."
+
+      Raises `Qrusty.Error` if the input is invalid
+
+  """
+  @spec qr(data, format, opts) :: binary()
+  def qr!(data, format, opts \\ []) do
+    QR.new(data, format, width(opts), height(opts), error_correction(opts))
+    |> case do
+      {:ok, %{encoded_data: qr}} -> qr
+      {:error, reason} -> raise Error, reason
+    end
   end
 
   defp width(opts) do
@@ -95,4 +129,6 @@ defmodule Qrusty do
   defp height(opts) do
     get(opts, :height) || get(opts, :size, @default_size)
   end
+
+  defp error_correction(opts), do: get(opts, :ec, @default_ec)
 end
