@@ -58,6 +58,9 @@ defmodule Qrusty.MixProject do
         "mix.exs",
         "LICENSE"
       ],
+      exclude_patterns: [
+        "native/qrusty/target"
+      ],
       licenses: ["MIT"],
       maintainers: ["Nathan Willson"],
       links: %{"GitHub" => @source_url},
