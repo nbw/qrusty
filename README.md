@@ -28,6 +28,13 @@ The following QR formats are supported:
 - base64 PNG (`:png64`)
 - base64 JPG (`:jpg64`)
 
+### Options
+
+- width: width in pixels (default: 200)
+- height: height in pixels (default: 200)
+- size: shorthand for width and height (default: 200)
+- ec: [error correction level](https://docs.rs/qrcode/0.6.0/qrcode/types/enum.EcLevel.html#variants) `:l`, `:m`, `:q`, `:h` (default: :m)
+
 ### SVG
 
 ```elixir
@@ -68,6 +75,12 @@ File.write("./assets/qr.jpg", binary)
 | PNG64  | [ sample ](assets/base65.html) |
 | JPG64  | --                             |
 
+Error correction:
+
+| L                          | M                          | Q                          | H                          |
+| -------------------------- | -------------------------- | -------------------------- | -------------------------- |
+| ![ l ](assets/qr_ec_l.jpg) | ![ m ](assets/qr_ec_m.jpg) | ![ q ](assets/qr_ec_q.jpg) | ![ h ](assets/qr_ec_h.jpg) |
+
 ## Benchmarks
 
 Benchmarks have been included to compare Qrusty (Rust based) to [EQRCode](https://github.com/SiliconJungles/eqrcode) (Elixir based), as it's the defacto Elixir QR Code library.
@@ -106,11 +119,8 @@ You will need the following installed:
 - Rust
 - [Cross](https://github.com/cross-rs/cross)
 
-### Compiling QRusty
-
-```
-mix compile.local
-```
+1. Increment the version in mix.exs so that the build on github can no longer be found
+2. Compile locally: `mix compile.local` or `QRUSTY_BUILD=true iex -S mix`
 
 ## Contributions
 

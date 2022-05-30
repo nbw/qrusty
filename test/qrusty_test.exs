@@ -22,4 +22,18 @@ defmodule QrustyTest do
       assert {:ok, %QR{width: 100, height: 100}} = Qrusty.qr(@valid_input, :svg, size: 100)
     end
   end
+
+  describe "qr!/3" do
+    test "returns encoded data" do
+      {:ok, %QR{encoded_data: data}} = Qrusty.qr(@valid_input, :svg)
+
+      assert Qrusty.qr!(@valid_input, :svg) == data
+    end
+
+    test "raise error if invalid input" do
+      assert_raise Qrusty.Error, fn ->
+        Qrusty.qr!(@valid_input, :svg, width: -100)
+      end
+    end
+  end
 end

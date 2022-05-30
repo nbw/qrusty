@@ -1,3 +1,10 @@
+defmodule Qrusty.Native.Options do
+  defstruct format: :svg,
+            width: 200,
+            height: 200,
+            error_correction: :m
+end
+
 defmodule Qrusty.Native do
   @moduledoc """
   Generates QR Codes by executing a Rust NIF.
@@ -15,29 +22,30 @@ defmodule Qrusty.Native do
     force_build: System.get_env("QRUSTY_BUILD") in ["1", "true"],
     version: version
 
-  @doc false
-  def generate(data, :svg, w, h), do: svg_nif(data, w, h)
-
-  def generate(data, :png, w, h), do: png_nif(data, w, h)
-
-  def generate(data, :png64, w, h), do: png64_nif(data, w, h)
-
-  def generate(data, f, w, h) when f in ~w(jpg jpeg)a, do: jpg_nif(data, w, h)
-
-  def generate(data, f, w, h) when f in ~w(jpg64 jpeg64)a, do: jpg64_nif(data, w, h)
+  alias Qrusty.Native.Options
 
   @doc false
-  def svg_nif(_data, _w, _h), do: :erlang.nif_error(:nif_not_loaded)
+  def generate(data, :svg, w, h, ec) do
+    opts = %Options{format: :svg, width: w, height: h, error_correction: ec}
+    svg_nif(data, opts)
+  end
+
+  def generate(data, f, w, h, ec) when f in ~w(png64 jpg64 jpeg64)a do
+    opts = %Options{format: f, width: w, height: h, error_correction: ec}
+    image_base64_nif(data, opts)
+  end
+
+  def generate(data, f, w, h, ec) when f in ~w(png jpg jpeg)a do
+    opts = %Options{format: f, width: w, height: h, error_correction: ec}
+    image_binary_nif(data, opts)
+  end
 
   @doc false
-  def png_nif(_data, _w, _h), do: :erlang.nif_error(:nif_not_loaded)
+  def svg_nif(_data, _opts), do: :erlang.nif_error(:nif_not_loaded)
 
   @doc false
-  def png64_nif(_data, _w, _h), do: :erlang.nif_error(:nif_not_loaded)
+  def image_binary_nif(_data, _opts), do: :erlang.nif_error(:nif_not_loaded)
 
   @doc false
-  def jpg_nif(_data, _w, _h), do: :erlang.nif_error(:nif_not_loaded)
-
-  @doc false
-  def jpg64_nif(_data, _width, _height), do: :erlang.nif_error(:nif_not_loaded)
+  def image_base64_nif(_data, _opts), do: :erlang.nif_error(:nif_not_loaded)
 end
