@@ -36,7 +36,8 @@ defmodule Qrusty.MixProject do
       # benchmarking
       {:benchee, "~> 1.0", only: :dev},
       {:benchee_html, "~> 1.0", only: :dev},
-      {:eqrcode, "~> 0.1.10", only: :dev}
+      {:eqrcode, "~> 0.1.10", only: :dev},
+      {:qr_code, "~> 2.3.1", only: :dev}
     ]
   end
 

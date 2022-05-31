@@ -55,6 +55,8 @@ png_eqrcode          0.29 - 7.21x slower +3.00 s
 
 # SVG
 
+[last run: 2022/05/30]
+
 ```
 qrusty ~ mix run benchmarks/svg.exs
 Operating System: macOS
@@ -71,41 +73,50 @@ memory time: 0 ns
 reduction time: 0 ns
 parallel: 1
 inputs: 100x100 QR (100 codes), 200x200 QR (100 codes), 500x500 QR (100 codes)
-Estimated total run time: 42 s
+Estimated total run time: 1.05 min
 
 Benchmarking svg_eqrcode with input 100x100 QR (100 codes) ...
 Benchmarking svg_eqrcode with input 200x200 QR (100 codes) ...
 Benchmarking svg_eqrcode with input 500x500 QR (100 codes) ...
+Benchmarking svg_qr_code with input 100x100 QR (100 codes) ...
+Benchmarking svg_qr_code with input 200x200 QR (100 codes) ...
+Benchmarking svg_qr_code with input 500x500 QR (100 codes) ...
 Benchmarking svg_qrusty with input 100x100 QR (100 codes) ...
 Benchmarking svg_qrusty with input 200x200 QR (100 codes) ...
 Benchmarking svg_qrusty with input 500x500 QR (100 codes) ...
 
 ##### With input 100x100 QR (100 codes) #####
 Name                  ips        average  deviation         median         99th %
-svg_qrusty          14.17       0.0706 s     ±7.74%       0.0691 s       0.0887 s
-svg_eqrcode          0.33         3.02 s     ±0.65%         3.02 s         3.04 s
+svg_qrusty          16.96       58.96 ms     ±4.88%       59.45 ms       65.25 ms
+svg_qr_code          1.43      700.02 ms     ±2.69%      705.75 ms      722.42 ms
+svg_eqrcode          0.40     2503.15 ms     ±3.04%     2503.15 ms     2556.95 ms
 
 Comparison:
-svg_qrusty          14.17
-svg_eqrcode          0.33 - 42.83x slower +2.95 s
+svg_qrusty          16.96
+svg_qr_code          1.43 - 11.87x slower +641.07 ms
+svg_eqrcode          0.40 - 42.46x slower +2444.19 ms
 
 ##### With input 200x200 QR (100 codes) #####
 Name                  ips        average  deviation         median         99th %
-svg_qrusty          14.10       0.0709 s     ±5.55%       0.0709 s       0.0817 s
-svg_eqrcode          0.32         3.12 s     ±0.51%         3.12 s         3.13 s
+svg_qrusty          16.78       59.61 ms     ±5.36%       59.48 ms       66.47 ms
+svg_qr_code          1.42      702.20 ms     ±1.47%      699.68 ms      720.98 ms
+svg_eqrcode          0.39     2545.46 ms     ±3.13%     2545.46 ms     2601.82 ms
 
 Comparison:
-svg_qrusty          14.10
-svg_eqrcode          0.32 - 44.02x slower +3.05 s
+svg_qrusty          16.78
+svg_qr_code          1.42 - 11.78x slower +642.59 ms
+svg_eqrcode          0.39 - 42.70x slower +2485.85 ms
 
 ##### With input 500x500 QR (100 codes) #####
 Name                  ips        average  deviation         median         99th %
-svg_qrusty          13.90       0.0719 s     ±6.99%       0.0715 s       0.0870 s
-svg_eqrcode          0.32         3.16 s     ±2.20%         3.16 s         3.21 s
+svg_qrusty          16.71       59.86 ms     ±5.30%       59.95 ms       65.86 ms
+svg_qr_code          1.39      719.70 ms     ±2.94%      714.83 ms      759.50 ms
+svg_eqrcode          0.39     2557.34 ms     ±1.40%     2557.34 ms     2582.59 ms
 
 Comparison:
-svg_qrusty          13.90
-svg_eqrcode          0.32 - 43.87x slower +3.08 s
+svg_qrusty          16.71
+svg_qr_code          1.39 - 12.02x slower +659.84 ms
+svg_eqrcode          0.39 - 42.72x slower +2497.48 ms
 ```
 
 # JPG
