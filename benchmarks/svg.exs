@@ -17,10 +17,16 @@ eqrcode = fn size ->
   |> EQRCode.svg(width: size)
 end
 
+qr_code = fn ->
+  {:ok, qr} = QRCode.create(input, :medium)
+  QRCode.Svg.create(qr)
+end
+
 Benchee.run(
  %{
     "#{format}_qrusty" => fn size -> Enum.each(1..times, fn _ -> qrusty.(size) end) end,
     "#{format}_eqrcode" => fn size -> Enum.each(1..times, fn _ -> eqrcode.(size) end) end,
+    "#{format}_qr_code" => fn _size -> Enum.each(1..times, fn _ -> qr_code.() end) end,
   },
   inputs: inputs
 )

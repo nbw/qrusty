@@ -83,7 +83,7 @@ Error correction:
 
 ## Benchmarks
 
-Benchmarks have been included to compare Qrusty (Rust based) to [EQRCode](https://github.com/SiliconJungles/eqrcode) (Elixir based), as it's the defacto Elixir QR Code library.
+Benchmarks have been included to compare Qrusty (Rust based) against other Elixir based QR libraries. Specifically [EQRCode](https://github.com/SiliconJungles/eqrcode) (SVG, PNG), and [QRCode](https://github.com/iodevs/qr_code) (SVG only).
 
 **Note**: since the execution time of generating a single QR code is so fast, benchmarking was not very accurate. To compensate, **the benchmarks measure the execution time for generating 100 QR codes.**
 
@@ -101,15 +101,27 @@ mix run benchmarks/svg.exs
 
 The full results are [here](/BENCHMARKS.md).
 
-Qrusty vs EQRCode (x times faster)
+_Qrusty vs EQRCode (x times faster)_
 
 |     | 100x100 | 200x200 | 500x500 |
 | --- | ------- | ------- | ------- |
 | PNG | 27.43x  | 18.86x  | 7.21x   |
-| SVG | 42.83x  | 44.02x  | 43.87x  |
+| SVG | 42.46x  | 42.70x  | 42.72x  |
 | JPG | -       | -       | -       |
 
 Trends: QRusty executes faster than QRCode, but the gains decrease with larger image sizes.
+
+_Qrusty vs QRCode (x times faster)_
+
+|     | 100x100 | 200x200 | 500x500 |
+| --- | ------- | ------- | ------- |
+| PNG | -       | -       | -       |
+| SVG | 11.87x  | 11.78x  | 12.02x  |
+| JPG | -       | -       | -       |
+
+[1]: saving PNG would require [Mogrify](https://github.com/elixir-mogrify/mogrify), which requires installing ImageMagick.
+
+[2]: QRCode doesn't take a size/width/height param so it's safe to say ≈ 11.8x
 
 ## Development
 
