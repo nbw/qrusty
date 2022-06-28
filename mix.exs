@@ -27,7 +27,7 @@ defmodule Qrusty.MixProject do
 
   defp deps do
     [
-      {:rustler_precompiled, "~> 0.4"},
+      {:rustler_precompiled, "~> 0.5"},
       {:rustler, ">= 0.25.0", optional: true},
 
       # docs
