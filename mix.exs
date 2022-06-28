@@ -1,7 +1,7 @@
 defmodule Qrusty.MixProject do
   use Mix.Project
 
-  @version "0.1.4"
+  @version "0.1.5"
   @source_url "https://github.com/nbw/qrusty"
 
   def project do
@@ -27,7 +27,7 @@ defmodule Qrusty.MixProject do
 
   defp deps do
     [
-      {:rustler_precompiled, "~> 0.4"},
+      {:rustler_precompiled, "~> 0.5"},
       {:rustler, ">= 0.25.0", optional: true},
 
       # docs
