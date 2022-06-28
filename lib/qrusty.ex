@@ -87,7 +87,7 @@ defmodule Qrusty do
           | []
 
   defmodule Error do
-    defexception message: "a error has occured"
+    defexception message: "a error has occurred"
 
     @impl true
     def exception(reason) when is_atom(reason), do: exception(Atom.to_string(reason))

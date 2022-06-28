@@ -26,7 +26,7 @@ defmodule Qrusty.QR do
         }
 
   @doc """
-  Validates input arguements and generates a QR if valid.
+  Validates input arguments and generates a QR if valid.
   """
   @spec new(
           data :: binary(),
