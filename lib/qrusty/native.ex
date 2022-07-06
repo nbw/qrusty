@@ -9,7 +9,7 @@ defmodule Qrusty.Native do
   @moduledoc """
   Generates QR Codes by executing a Rust NIF.
 
-  As a general rule, fuctions in this module should no
+  As a general rule, functions in this module should no
   be called directly. Instead, refer to the `Qrusty` module.
   """
   version = Mix.Project.config()[:version]
