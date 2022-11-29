@@ -78,11 +78,13 @@ defmodule Qrusty do
 
   @type data :: String.t()
   @type format :: :svg | :png | :jpg | :jpeg | :png64 | :jpg64 | :jpeg64
+  @type error_correction :: :l | :m | :q | :h
   @type opts ::
           [
             size: integer(),
             height: integer(),
-            width: integer()
+            width: integer(),
+            ec: error_correction()
           ]
           | []
 
