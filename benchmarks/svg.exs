@@ -18,8 +18,7 @@ eqrcode = fn size ->
 end
 
 qr_code = fn ->
-  {:ok, qr} = QRCode.create(input, :medium)
-  QRCode.Svg.create(qr)
+  {:ok, _svg} = input |> QRCode.create(:medium) |> QRCode.render(:svg)
 end
 
 Benchee.run(
