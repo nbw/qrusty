@@ -27,17 +27,17 @@ defmodule Qrusty.MixProject do
 
   defp deps do
     [
-      {:rustler_precompiled, "~> 0.5"},
-      {:rustler, ">= 0.25.0", optional: true},
+      {:rustler_precompiled, "~> 0.8"},
+      {:rustler, ">= 0.0.0", optional: true},
 
       # docs
-      {:ex_doc, "~> 0.27", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.34", only: :dev, runtime: false},
 
       # benchmarking
       {:benchee, "~> 1.0", only: :dev},
       {:benchee_html, "~> 1.0", only: :dev},
-      {:eqrcode, "~> 0.1.10", only: :dev},
-      {:qr_code, "~> 2.3.1", only: :dev}
+      {:eqrcode, "~> 0.2", only: :dev},
+      {:qr_code, "~> 3.2", only: :dev}
     ]
   end
 
